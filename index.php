@@ -11,7 +11,5 @@ $title = 'Название страницы';
 $text = 'Hello, world!!!';
 $class = 'success';
 echo $template->render([
-    'title' => $title,
-    'text' => $text,
-    'class' => $class
+    'title' => $title
 ]);
