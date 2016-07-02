@@ -2,14 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> {% block title %} {% endblock %}</title>
+    <title>Clash of clans - Ukrainian army</title>
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' type='text/css' media='all'>
     <link rel="stylesheet" href="/css/style.css" type='text/css'>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-{% block content %}{% endblock %}
-<footer></footer>
+<div class="container">
+    <header class="header">
+        <div class="row">
+            <div class="logo col-md-3">
+                <a href="">
+                    <img src="/img/logo.png" alt="Clash of clans">
+                </a>
+            </div>
+            <div class="banner col-md-9">
+                <span>Ukrainian army</span>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav nav-pills">
+                <li><a href="#">Правила</a></li>
+                <li><a href="#">Список клана</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обсуждение</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Правила</a></li>
+                        <li><a href="#">Базы</a></li>
+                        <li><a href="#">Атаки</a></li>
+                        <li><a href="#">Фарм</a></li>
+                        <li><a href="#">Флуд</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Расстановки</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">8 TX</a></li>
+                        <li><a href="#">9 TX</a></li>
+                        <li><a href="#">10 TX</a></li>
+                        <li><a href="#">11 TX</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Видео</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">8 TX</a></li>
+                        <li><a href="#">9 TX</a></li>
+                        <li><a href="#">10 TX</a></li>
+                        <li><a href="#">11 TX</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Полезные ссылки</a></li>
+                <li><a href="#">Чорный список</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+<div class="container navbar-fixed-bottom">
+    <footer id="footer ">
+        <p class="text-muted">2016 © Den Mishchenko </p>
+    </footer>
+</div>
 </body>
 </html>
+
