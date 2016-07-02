@@ -1,4 +1,40 @@
-div.form {
-    width: 400px;
-    margin: 100px auto;
+body {
+    background: url('/img/index_bg.jpg') no-repeat fixed center;
 }
+@font-face {
+    font-family: "COC";
+    src: url("/fonts/Supercell-Magic_1.ttf");
+}
+
+.banner {
+    font-family: "COC", Helvetica, Arial, sans-serif;
+    color: #FFD500;
+    font-size: 300%;
+    padding-top: 30px;
+}
+
+.nav li a:hover,
+.nav li a:focus,
+.nav li.dropdown a:focus {
+    background-color: #FFD500;
+    color: #005BBB;
+}
+
+.nav li a {
+    font-family: "COC", Helvetica, Arial, sans-serif;
+    color: #454447;
+}
+
+ul.dropdown-menu {
+    background: transparent;
+}
+
+nav {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #454447;
+}
+
+
+
+
