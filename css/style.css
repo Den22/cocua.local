@@ -46,28 +46,64 @@ nav {
     border-bottom: 1px solid #454447;
 }
 
-/* BASE END */
-/* RULES BEGIN */
-
 main {
     background-color: rgba(238, 237, 240, 0.95);
     padding: 15px 30px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+/* BASE END */
+/* RULES BEGIN */
+
+
+
+main.rules {
     font-family: "XXIICentarRegular", Helvetica, Arial, sans-serif;
     font-size: 130%;
 }
-main h3 {
+
+main.rules h3 {
     font-size: 150%;
 }
 
-
-
-
-
-
 /* RULES END */
+/*CLANLIST BEGIN*/
+
+.list table {
+    font-family: "COC", Helvetica, Arial, sans-serif;
+    font-size: 80%;
+    width: 100%;
+}
+.list th, .list td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #8c8c8c;
+    color: #333333;
+}
+.list a {
+    display: block;
+    color: #333333;
+    text-decoration: none;
+}
+
+.clanlist th {
+    width: 10%;
+}
+
+/*CLANLIST END*/
+/*BLACKIST BEGIN*/
+
+.blacklist th {
+    width: 15%;
+}
+.blacklist th.reason {
+    width: 40%;
+}
+
+/*BLACKLIST END*/
 
 
 
