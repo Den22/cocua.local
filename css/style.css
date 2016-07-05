@@ -2,25 +2,26 @@
 
 body {
     background: url('/img/index_bg.jpg') no-repeat fixed center;
+    font-family: "COC", Helvetica, Arial, sans-serif;
 }
+
 @font-face {
     font-family: "COC";
     src: url("/fonts/Supercell-Magic_1.ttf");
 }
+
 @font-face {
     font-family: "XXIICentarRegular";
     src: url("/fonts/Centar Sans/XXII Centar Regular/Doubletwo Studios - XXIICentarRegular.otf");
 }
 
-
 .banner {
-    font-family: "COC", Helvetica, Arial, sans-serif;
     color: #FFD500;
     font-size: 300%;
     padding-top: 30px;
 }
 
-.nav>li>a:hover,
+.nav > li > a:hover,
 .nav li a:focus,
 .nav li.dropdown a:focus {
     background-color: #FFD500;
@@ -28,11 +29,11 @@ body {
 }
 
 ul.dropdown-menu a:hover {
-    background-color: rgba(148, 147, 150, 0.45);
+    background-color: rgba(255, 255, 255, 0.51);
+    color: #005BBB;
 }
 
 .nav li a {
-    font-family: "COC", Helvetica, Arial, sans-serif;
     color: #454447;
 }
 
@@ -52,12 +53,11 @@ main {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    color: #333333;
 }
 
 /* BASE END */
 /* RULES BEGIN */
-
-
 
 main.rules {
     font-family: "XXIICentarRegular", Helvetica, Arial, sans-serif;
@@ -71,20 +71,26 @@ main.rules h3 {
 /* RULES END */
 /*CLANLIST BEGIN*/
 
-.list table {
-    font-family: "COC", Helvetica, Arial, sans-serif;
+table.tabular {
     font-size: 80%;
     width: 100%;
 }
-.list th, .list td {
+
+.tabular th, .tabular td {
+    padding: 5px;
+}
+
+.border th,
+.border td {
+    border: 1px solid #8c8c8c;
+}
+
+.centered-th th, .centered-td td {
     vertical-align: middle;
     text-align: center;
-    padding: 5px;
-    border: 1px solid #8c8c8c;
-    color: #333333;
 }
-.list a {
-    display: block;
+
+main.table-responsive a {
     color: #333333;
     text-decoration: none;
 }
@@ -99,11 +105,119 @@ main.rules h3 {
 .blacklist th {
     width: 15%;
 }
-.blacklist th.reason {
+
+.blacklist th:last-child {
     width: 40%;
 }
 
 /*BLACKLIST END*/
+/*TOPICS BEGIN*/
+
+span.yellow {
+    color: #005BBB;
+    font-size: 90%;
+}
+
+.topics th {
+    width: 25%;
+}
+
+.topics tr.title {
+    height: 40px;
+    background-color: #cccbce;
+}
+
+.topics th:first-child {
+    width: 50%;
+}
+
+/*TOPICS END*/
+/*ONE-TOPIC BEGIN*/
+
+main a.top-btn {
+    width: 120px;
+    background-color: #cccbce;
+    margin-bottom: 10px;
+    font-size: 80%;
+    color: #005BBB;
+}
+
+.post td:first-child {
+    width: 15%;
+}
+
+.post td:last-child {
+    width: 85%;
+}
+
+.one-topic table {
+    font-size: 80%;
+    width: 100%;
+}
+
+.one-topic th, .one-topic td {
+    padding: 10px;
+}
+
+.one-topic tr:nth-child(2n) {
+    background-color: #d8d7da;
+}
+
+.avatar img {
+    height: 100px;
+    margin: 5px;
+}
+
+main .nick a {
+    color: #005BBB;
+}
+
+.one-topic .title {
+    height: 40px;
+    background-color: #d8d7da;
+}
+
+.one-topic .comment {
+    vertical-align: top;
+}
+
+.comment .time_comment {
+    border-bottom: 1px solid #8c8c8c;
+    margin-bottom: 10px;
+}
+
+.comment .com {
+    font-family: "XXIICentarRegular", Helvetica, Arial, sans-serif;
+    font-size: 140%;
+}
+
+.comment .comm_img img {
+    max-height: 250px;
+    float: left;
+}
+
+/*ONE-TOPIC END*/
+/*PLANS BEGIN*/
+
+.plan {
+    margin: 20px 0;
+}
+
+.plan img {
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.plan .desc {
+    padding: 15px;
+}
+
+.desc .text {
+    font-family: "XXIICentarRegular", Helvetica, Arial, sans-serif;
+    font-size: 140%;
+}
+
+/*PLANS END*/
 
 
 

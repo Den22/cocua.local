@@ -6,7 +6,11 @@ Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem('templates');
 $twig = new Twig_Environment($loader);
 
+
 //$template = $twig->loadTemplate('rules.html');
 //$template = $twig->loadTemplate('clanlist.html');
-$template = $twig->loadTemplate('blacklist.html');
+//$template = $twig->loadTemplate('blacklist.html');
+//$template = $twig->loadTemplate('topics.html');
+$template = $twig->loadTemplate('one_topic.html');
+//$template = $twig->loadTemplate('plans.html');
 echo $template->render([]);
