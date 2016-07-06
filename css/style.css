@@ -218,6 +218,32 @@ main .nick a {
 }
 
 /*PLANS END*/
+/*VIDEO BEGIN*/
+
+.video-one {
+    padding: 10px 10px;
+    width: 50%;
+    float: left;
+}
+
+.video-one .desc{
+    height: 52px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clearboth {
+    clear: both;
+}
+
+/*VIDEO END*/
+/*LINKS BEGIN*/
+
+div.panel:last-child {
+    margin-bottom: 0;
+}
+
+/*LINKS END*/
 
 
 
