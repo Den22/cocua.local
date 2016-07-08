@@ -21,6 +21,12 @@ body {
     padding-top: 30px;
 }
 
+.flag {
+    margin-top: 25px;
+    color: #454447;
+    font-size: 100%;
+}
+
 .nav > li > a:hover,
 .nav li a:focus,
 .nav li.dropdown a:focus {
@@ -90,7 +96,7 @@ table.tabular {
     text-align: center;
 }
 
-main.table-responsive a {
+main a {
     color: #333333;
     text-decoration: none;
 }
@@ -163,7 +169,7 @@ main a.top-btn {
     background-color: #d8d7da;
 }
 
-.avatar img {
+.one-topic .avatar img {
     height: 100px;
     margin: 5px;
 }
@@ -244,6 +250,38 @@ div.panel:last-child {
 }
 
 /*LINKS END*/
+/*AUTHORIZATION BEGIN*/
+
+main.authorization {
+    width: 360px;
+    margin: 100px auto;
+}
+
+/*AUTHORIZATION  END*/
+/*REGISTRATION BEGIN*/
+
+main.registration {
+    width: 500px;
+    margin: 20px auto;
+}
+
+/*REGISTRATION END*/
+/*PROFILE BEGIN*/
+
+.profile .avatar img {
+    max-height: 400px;
+    margin: 15px;
+}
+
+.profile table {
+    width: 500px;
+}
+
+.profile .change {
+    margin-right: 40px;
+}
+
+/*PROFILE END*/
 
 
 

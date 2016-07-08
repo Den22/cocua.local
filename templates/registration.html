@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="registration">
+    <form role="form"  method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="code">Код доступа</label>
+            <input type="password" class="form-control" name="code" id="code" placeholder="XXXXXX">
+        </div>
+        <div class="form-group">
+            <label for="hashtag">Ваш xeштег в игре</label>
+            <input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="#HASHTAG">
+        </div>
+        <div class="form-group">
+            <label for="nick">Ник в игре</label>
+            <input type="text" class="form-control" name="nick" id="nick" placeholder="Nick">
+        </div>
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="rank">Звание</label>
+            <input type="text" class="form-control" name="rank" id="rank" placeholder="Rank">
+        </div>
+        <div class="form-group">
+            <label for="сity">Город</label>
+            <input type="text" class="form-control" name="сity" id="сity" placeholder="City">
+        </div>
+        <div class="form-group">
+            <label for="occupation">Род занятий</label>
+            <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Occupation">
+        </div>
+        <div class="form-group">
+            <label for="password1">Пароль</label>
+            <input type="password" class="form-control" name="password1" id="password1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="password2">Повторите пароль</label>
+            <input type="password" class="form-control" name="password2" id="password2" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="avatar">Добавить аватарку</label>
+            <input type="file" id="avatar">
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="readRules"> Я прочитал правила
+            </label>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Регистрация</button>
+            <button type="reset" class="btn btn-danger">Очистить</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}
