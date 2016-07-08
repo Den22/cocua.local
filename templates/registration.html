@@ -21,8 +21,25 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Name">
         </div>
         <div class="form-group">
-            <label for="rank">Звание</label>
-            <input type="text" class="form-control" name="rank" id="rank" placeholder="Rank">
+            <p>Звание:</p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="rank" id="rank1" value="Учасник" checked>
+                    Учасник
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="rank" id="rank2" value="Старейшина">
+                    Старейшина
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="rank" id="rank3" value="Соруководитель">
+                    Соруководитель
+                </label>
+            </div>
         </div>
         <div class="form-group">
             <label for="сity">Город</label>
@@ -41,8 +58,12 @@
             <input type="password" class="form-control" name="password2" id="password2" placeholder="Password">
         </div>
         <div class="form-group">
+            <label for="birthday">День рождения</label>
+            <input type="date" class="form-control" id="birthday">
+        </div>
+        <div class="form-group">
             <label for="avatar">Добавить аватарку</label>
-            <input type="file" id="avatar">
+            <input type="file"  id="avatar">
         </div>
         <div class="checkbox">
             <label>

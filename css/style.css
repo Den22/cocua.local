@@ -261,9 +261,10 @@ main.authorization {
 /*REGISTRATION BEGIN*/
 
 main.registration {
-    width: 500px;
-    margin: 20px auto;
+    width: 600px;
+    margin: 0 auto;
 }
+
 
 /*REGISTRATION END*/
 /*PROFILE BEGIN*/
