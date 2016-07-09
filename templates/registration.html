@@ -3,7 +3,7 @@
 {% block content %}
 
 <main class="registration">
-    <form role="form"  method="post" enctype="multipart/form-data">
+    <form action="/admin/adduser" role="form"  method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="code">Код доступа</label>
             <input type="password" class="form-control" name="code" id="code" placeholder="XXXXXX">
@@ -24,34 +24,34 @@
             <p>Звание:</p>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank1" value="Учасник" checked>
+                    <input type="radio" name="rank" id="rank1" value="Member" checked>
                     Учасник
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank2" value="Старейшина">
+                    <input type="radio" name="rank" id="rank2" value="Elder">
                     Старейшина
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank3" value="Соруководитель">
+                    <input type="radio" name="rank" id="rank3" value="Co Leader">
                     Соруководитель
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="сity">Город</label>
-            <input type="text" class="form-control" name="сity" id="сity" placeholder="City">
+            <label for="city">Город</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="City">
         </div>
         <div class="form-group">
             <label for="occupation">Род занятий</label>
             <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Occupation">
         </div>
         <div class="form-group">
-            <label for="password1">Пароль</label>
-            <input type="password" class="form-control" name="password1" id="password1" placeholder="Password">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="password2">Повторите пароль</label>
@@ -59,7 +59,11 @@
         </div>
         <div class="form-group">
             <label for="birthday">День рождения</label>
-            <input type="date" class="form-control" id="birthday">
+            <input type="date" class="form-control" name="birthday" id="birthday">
+        </div>
+        <div class="form-group">
+            <label for="phone">Номер телефона (виден только админу)</label>
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="+xx(xxx)xxxxxxx">
         </div>
         <div class="form-group">
             <label for="avatar">Добавить аватарку</label>
