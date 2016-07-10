@@ -105,6 +105,10 @@ main a {
     width: 10%;
 }
 
+.clanlist tbody {
+    white-space: nowrap;
+}
+
 /*CLANLIST END*/
 /*BLACKIST BEGIN*/
 
@@ -114,6 +118,10 @@ main a {
 
 .blacklist th:last-child {
     width: 40%;
+}
+
+.blacklist tbody {
+    white-space: nowrap;
 }
 
 /*BLACKLIST END*/

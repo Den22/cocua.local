@@ -3,7 +3,6 @@
 {% block content %}
 
 <main class="profile table-responsive">
-    <h5>Профиль бойца: Коготь І</h5>
     <div class="avatar">
         <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQwO8KuZtUBLqzNY9oDqYoPovSdSDYmcDHef-ICSe6GjwBUVUkR" alt="">
     </div>
@@ -11,47 +10,47 @@
         <tbody>
         <tr>
             <th>Хештег</th>
-            <th>#HDHC34</th>
+            <th>{{ data.hashtag }}</th>
         </tr>
         <tr>
             <th>Ник</th>
-            <th>Коготь І</th>
+            <th>{{ data.nick }}</th>
         </tr>
         <tr>
             <th>Имя</th>
-            <th>Андрей</th>
+            <th>{{ data.name }}</th>
         </tr>
         <tr>
             <th>Звание</th>
-            <th>Соруководитель</th>
+            <th>{{ data.rank }}</th>
         </tr>
         <tr>
             <th>Отдано доната</th>
-            <th>153235</th>
+            <th>{{ data.given }}</th>
         </tr>
         <tr>
             <th>Взято доната</th>
-            <th>13265</th>
+            <th>{{ data.taken }}</th>
         </tr>
         <tr>
             <th>Коэфициент доната</th>
-            <th>1,21</th>
+            <th>{{ data.ratio }}</th>
         </tr>
         <tr>
             <th>Штрафные балы</th>
-            <th>1</th>
+            <th>{{ data.points }}</th>
         </tr>
         <tr>
             <th>День рождения</th>
-            <th>01.01.1985</th>
+            <th>{{ data.birthday }}</th>
         </tr>
         <tr>
             <th>Город</th>
-            <th>Киев</th>
+            <th>{{ data.city }}</th>
         </tr>
         <tr>
             <th>Деятельность</th>
-            <th>Банкир</th>
+            <th>{{ data.occupation }}</th>
         </tr>
         </tbody>
     </table>

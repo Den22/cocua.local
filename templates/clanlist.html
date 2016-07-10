@@ -13,11 +13,9 @@
             <th colspan="2">Донат за все время</th>
             <th rowspan="2">Коэфициент доната</th>
             <th rowspan="2">Штрафные балы</th>
-            <th rowspan="2">Возраст</th>
+            <th rowspan="2">День рождения</th>
             <th rowspan="2">Город</th>
             <th rowspan="2">Род деятельности</th>
-            <!--<th rowspan="2">Телефон</th>-->
-            <!--<th rowspan="2">Email</th>-->
         </tr>
         <tr>
             <th>Отдано</th>
@@ -25,81 +23,21 @@
         </tr>
         </thead>
         <tbody>
+        {% for user in data %}
         <tr>
-            <td>#FFFRGWS</td>
-            <td><a href="">Денис</a></td>
-            <td>Денис</td>
-            <td>Глава</td>
-            <td>95500</td>
-            <td>85500</td>
-            <td>1,235</td>
-            <td>26</td>
-            <td>0</td>
-            <td>Винница</td>
-            <td>Сметчик</td>
-            <!--<td>+380(96)777 77 77</td>-->
-            <!--<td>mishchenko90@list.ru</td>-->
+            <td>{{ user.hashtag }}</td>
+            <td><a href="/users/one/{{user.id}}">{{ user.nick }}</a></td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.rank }}</td>
+            <td>{{ user.given }}</td>
+            <td>{{ user.taken }}</td>
+            <td>{{ user.ratio }}</td>
+            <td>{{ user.points }}</td>
+            <td>{{ user.birthday }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.occupation }}</td>
         </tr>
-        <tr>
-            <td>#FFFRGWS</td>
-            <td><a href="">Денис</a></td>
-            <td>Денис</td>
-            <td>Глава</td>
-            <td>95500</td>
-            <td>85500</td>
-            <td>1,235</td>
-            <td>26</td>
-            <td>0</td>
-            <td>Винница</td>
-            <td>Сметчик</td>
-            <!--<td>+380(96)777 77 77</td>-->
-            <!--<td>mishchenko90@list.ru</td>-->
-        </tr>
-        <tr>
-            <td>#FFFRGWS</td>
-            <td><a href="">Денис</a></td>
-            <td>Денис</td>
-            <td>Глава</td>
-            <td>95500</td>
-            <td>85500</td>
-            <td>1,235</td>
-            <td>26</td>
-            <td>0</td>
-            <td>Винница</td>
-            <td>Сметчик</td>
-            <!--<td>+380(96)777 77 77</td>-->
-            <!--<td>mishchenko90@list.ru</td>-->
-        </tr>
-        <tr>
-            <td>#FFFRGWS</td>
-            <td><a href="">Денис</a></td>
-            <td>Денис</td>
-            <td>Глава</td>
-            <td>95500</td>
-            <td>85500</td>
-            <td>1,235</td>
-            <td>26</td>
-            <td>0</td>
-            <td>Винница</td>
-            <td>Сметчик</td>
-            <!--<td>+380(96)777 77 77</td>-->
-            <!--<td>mishchenko90@list.ru</td>-->
-        </tr>
-        <tr>
-            <td>#FFFRGWS</td>
-            <td><a href="">Денис</a></td>
-            <td>Денис</td>
-            <td>Глава</td>
-            <td>95500</td>
-            <td>85500</td>
-            <td>1,235</td>
-            <td>26</td>
-            <td>0</td>
-            <td>Винница</td>
-            <td>Сметчик</td>
-            <!--<td>+380(96)777 77 77</td>-->
-            <!--<td>mishchenko90@list.ru</td>-->
-        </tr>
+        {% endfor %}
         </tbody>
     </table>
 </main>
