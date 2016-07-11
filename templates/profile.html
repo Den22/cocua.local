@@ -10,7 +10,7 @@
         <tbody>
         <tr>
             <th>Хештег</th>
-            <th>{{ data.hashtag }}</th>
+            <th>{{ data.hashtag|upper }}</th>
         </tr>
         <tr>
             <th>Ник</th>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <th>Коэфициент доната</th>
-            <th>{{ data.ratio }}</th>
+            <th>{{ data.ratio|round(3) }}</th>
         </tr>
         <tr>
             <th>Штрафные балы</th>

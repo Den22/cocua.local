@@ -25,13 +25,13 @@
         <tbody>
         {% for user in data %}
         <tr>
-            <td>{{ user.hashtag }}</td>
+            <td>{{ user.hashtag|upper }}</td>
             <td><a href="/users/one/{{user.id}}">{{ user.nick }}</a></td>
             <td>{{ user.name }}</td>
             <td>{{ user.rank }}</td>
             <td>{{ user.given }}</td>
             <td>{{ user.taken }}</td>
-            <td>{{ user.ratio }}</td>
+            <td>{{ user.ratio|round(3)}}</td>
             <td>{{ user.points }}</td>
             <td>{{ user.birthday }}</td>
             <td>{{ user.city }}</td>

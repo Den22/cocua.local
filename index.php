@@ -4,7 +4,6 @@ require __DIR__ . '/autoload.php';
 require __DIR__ . '/config.php';
 
 use Application\Classes\Route;
-use Application\Classes\Cookie;
 
 Route::run();
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace Application\Classes;
+use Application\Classes\Cookie;
 
 
 class Route
