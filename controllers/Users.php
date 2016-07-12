@@ -24,12 +24,18 @@ class Users
 
     public function actionAddUser()
     {
-        $user = new UsersModel();
+        $view = new View();
         $valid = new ValidReg();
         $inputs = filter_input_array(INPUT_POST, $valid->arrayFilters);
-
-        var_dump($inputs);die;
-
+        foreach ($inputs as $key => $input) {
+            if ($input == false) {
+                $view->data = $valid->arrayNames[$key];
+                $view->display('registration');
+                break;
+            }
+        }
+        die;
+        $user = new UsersModel();
         $user->data = $_POST;
         unset($user->data['password2']);
         unset($user->data['readRules']);

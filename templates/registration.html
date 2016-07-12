@@ -4,8 +4,10 @@
 
 <main class="registration">
     <form action="/users/adduser" role="form" method="post" enctype="multipart/form-data">
-        {% if warning is defined %}
-        <div class="warning"> {{ warning }}</div>
+        {% if data.field is defined %}
+        <div class="warning">
+            <p>Поле {{ data.field }} заполнено не корректно. {{ data.prompt }}
+        </div>
         {% endif %}
         <div class="form-group">
             <label for="code">Код доступа</label>
