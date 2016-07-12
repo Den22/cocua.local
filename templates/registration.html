@@ -3,7 +3,10 @@
 {% block content %}
 
 <main class="registration">
-    <form action="/users/adduser" role="form"  method="post" enctype="multipart/form-data">
+    <form action="/users/adduser" role="form" method="post" enctype="multipart/form-data">
+        {% if warning is defined %}
+        <div class="warning"> {{ warning }}</div>
+        {% endif %}
         <div class="form-group">
             <label for="code">Код доступа</label>
             <input type="password" class="form-control" name="code" id="code" placeholder="XXXXXX">
@@ -62,12 +65,17 @@
             <input type="date" class="form-control" name="birthday" id="birthday">
         </div>
         <div class="form-group">
-            <label for="phone">Номер телефона (виден только админу)</label>
+            <label for="phone">Номер мобильного телефона</label>
             <input type="text" class="form-control" name="phone" id="phone" placeholder="+xx(xxx)xxxxxxx">
+            <p class="help-block small-text">Телефон виден только главе клана и используется в экстренных случаях</p>
+        </div>
+        <div class="form-group">
+            <label for="email">Электронная почта</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
         </div>
         <div class="form-group">
             <label for="avatar">Добавить аватарку</label>
-            <input type="file"  id="avatar">
+            <input type="file" id="avatar">
         </div>
         <div class="checkbox">
             <label>

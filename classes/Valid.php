@@ -1,9 +1,10 @@
 <?php
 
-namespace Application\Classes;
+namespace Application\classes;
 
 
-class Valid
+abstract class Valid
 {
-
+    protected $arrayFilters;
+    protected $arrayName;
 }

@@ -273,6 +273,14 @@ main.registration {
     margin: 0 auto;
 }
 
+.registration .small-text{
+    font-size: 70%;
+}
+
+.registration .warning {
+    color: #ff4d65;
+}
+
 
 /*REGISTRATION END*/
 /*PROFILE BEGIN*/
