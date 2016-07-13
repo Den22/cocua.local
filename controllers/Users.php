@@ -24,22 +24,17 @@ class Users
 
     public function actionAddUser()
     {
-        $view = new View();
         $valid = new ValidReg();
+        $view = new View();
         $inputs = filter_input_array(INPUT_POST, $valid->arrayFilters);
-        foreach ($inputs as $key => $input) {
-            if ($input == false) {
-                $view->data = $valid->arrayNames[$key];
-                $view->display('registration');
-                break;
-            }
+        if ($valid->checkAll($inputs) || $valid->checkMatchPass($inputs) || $valid->checkExistHashtag($inputs) || $valid->checkCode($inputs)) {
+            $view->data = array_merge($valid->disparity, $inputs);
+            $view->display('registration');
+            die;
         }
-        die;
         $user = new UsersModel();
-        $user->data = $_POST;
-        unset($user->data['password2']);
-        unset($user->data['readRules']);
-        unset($user->data['code']);
+        unset($inputs['code'], $inputs['password2'], $inputs['readRules']);
+        $user->data = $inputs;
         $user->data['date'] = date("Y-m-d");
         $user->insert();
         header('Location: /users/one/' . $user->id);

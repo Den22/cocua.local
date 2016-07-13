@@ -61,4 +61,12 @@ abstract class AbstractModel
         $this->id = $db->dbh->lastInsertId();
     }
 
+    public static function findByColumn($column, $value)
+    {
+        $db = new DB();
+        $db->className = get_called_class();
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . ' = :value';
+        return $db->query($sql, [':value' => $value]);
+    }
+
 }

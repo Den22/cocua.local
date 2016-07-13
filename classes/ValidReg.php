@@ -2,6 +2,9 @@
 
 namespace Application\Classes;
 
+use Application\Models\Users;
+use Application\Models\Codes;
+
 
 class ValidReg extends Valid
 {
@@ -16,22 +19,22 @@ class ValidReg extends Valid
         ],
         'nick'=> [
             'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^.{3,16}$/']
+            'options' => ['regexp' => '/^\X{3,16}$/']
         ],
         'name'=> [
             'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^.{3,16}$/']
+            'options' => ['regexp' => '/^\X{3,16}$/']
         ],
         'rank'=> [
             'filter' => FILTER_UNSAFE_RAW
         ],
         'city'=> [
             'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^.{3,16}$/']
+            'options' => ['regexp' => '/^\X{3,16}$/u']
         ],
         'occupation'=> [
             'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^.{3,32}$/']
+            'options' => ['regexp' => '/^\X{3,32}$/u']
         ],
         'password'=> [
             'filter' => FILTER_VALIDATE_REGEXP,
@@ -59,19 +62,19 @@ class ValidReg extends Valid
     public $arrayNames = [
         'code' => [
             'field' => '"Код доступа"',
-            'prompt' => 'Должен быть в формате "123456"'
+            'prompt' => 'Должно быть в формате "123456"'
             ],
         'hashtag' => [
             'field' => '"Ваш хештег в игре"',
-            'prompt' => 'Должен быть в формате "#XXXXXXXXX"'
+            'prompt' => 'Должно быть в формате "#XXXXXXXXX"'
         ],
         'nick'=> [
             'field' => '"Ник в игре"',
-            'prompt' => 'От 3 до 16 символов'
+            'prompt' => 'Должно быть от 3 до 16 символов'
         ],
         'name'=> [
             'field' => '"Имя"',
-            'prompt' => 'От 3 до 16 символов'
+            'prompt' => 'Должно быть от 3 до 16 символов'
         ],
         'rank'=> [
             'field' => '"Звание"',
@@ -79,27 +82,27 @@ class ValidReg extends Valid
         ],
         'city'=> [
             'field' => '"Город"',
-            'prompt' => 'От 3 до 16 символов'
+            'prompt' => 'Должно быть от 3 до 16 символов'
         ],
         'occupation'=> [
             'field' => '"Род занятий"',
-            'prompt' => 'От 3 до 32 символов'
+            'prompt' => 'Должно быть от 3 до 32 символов'
         ],
         'password'=> [
             'field' => '"Пароль"',
-            'prompt' => 'От 6 до 16 символов и включать в себя только буквенные или цифровые символы'
+            'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
         'password2'=> [
-            'field' => '"Повторите пароль"',
-            'prompt' => 'От 6 до 16 символов и включать в себя только буквенные или цифровые символы'
+            'field' => '"Подвердите пароль"',
+            'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
         'birthday'=> [
             'field' => '"День рождения"',
-            'prompt' => 'Должен быть в формате "ДД.ММ.РРРР"'
+            'prompt' => 'Должено быть в формате "ДД.ММ.РРРР"'
         ],
         'phone'=> [
             'field' => '"Номер мобильного телефона"',
-            'prompt' => 'Должен быть в формате "+хх(ххх)ххххххх"'
+            'prompt' => 'Должено быть в формате "+хх(ххх)ххххххх"'
         ],
         'email'=> [
             'field' => '"Электронная почта"',
@@ -110,5 +113,55 @@ class ValidReg extends Valid
             'prompt' => 'Потвердите ознакомление с правилами клана'
         ]
     ];
+
+    public $disparity;
+
+    public function checkAll($inputs) {
+        foreach ($inputs as $key => $input) {
+            if ($input == false) {
+                $this->disparity = $this->arrayNames[$key];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function checkMatchPass($inputs) {
+        if ($inputs['password'] !== $inputs['password2']) {
+            $this->disparity = [
+                'field' => '"Пароль"',
+                'prompt' => 'Поля "Пароль" и "Подвердите пароль" не совпадают'
+            ];
+            return true;
+        }
+        return false;
+    }
+
+    public function checkCode($inputs) {
+        $code = new Codes();
+        $arr = $code->findByColumn('hashtag', $inputs['hashtag']);
+        var_dump($arr[$code->data['code']]);die;
+        if (!isset($arr[$code->data['code']]) || $arr[$arr[$code->data['code']] !== $inputs['code']) {
+            $this->disparity = [
+                'field' => '"Код доступа"',
+                'prompt' => 'Неверный код доступа'
+            ];
+            return true;
+        }
+        return false;
+    }
+
+    public function checkExistHashtag($inputs) {
+        $user = new Users();
+        if ($user->findByColumn('hashtag', $inputs['hashtag'])) {
+            $this->disparity = [
+                'field' => '"Ваш хештег в игре"',
+                'prompt' => 'Данный хештег зарегистрирован за другим пользователем.
+                 Если все же это ваш хештег - свяжитесь с главой клана в чате или через email d080590@gmail.com'
+            ];
+            return true;
+        }
+        return false;
+    }
 
 }

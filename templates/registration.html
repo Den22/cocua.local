@@ -11,19 +11,23 @@
         {% endif %}
         <div class="form-group">
             <label for="code">Код доступа</label>
-            <input type="password" class="form-control" name="code" id="code" placeholder="XXXXXX">
+            <input type="password" class="form-control" name="code"
+                   id="code" placeholder="XXXXXX"  value="{{ data.code }}">
         </div>
         <div class="form-group">
             <label for="hashtag">Ваш xeштег в игре</label>
-            <input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="#HASHTAG">
+            <input type="text" class="form-control" name="hashtag"
+                   id="hashtag" placeholder="#HASHTAG" value="{{ data.hashtag }}">
         </div>
         <div class="form-group">
             <label for="nick">Ник в игре</label>
-            <input type="text" class="form-control" name="nick" id="nick" placeholder="Nick">
+            <input type="text" class="form-control" name="nick"
+                   id="nick" placeholder="Nick" value="{{ data.nick }}">
         </div>
         <div class="form-group">
             <label for="name">Имя</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+            <input type="text" class="form-control" name="name"
+                   id="name" placeholder="Name" value="{{ data.name }}">
         </div>
         <div class="form-group">
             <p>Звание:</p>
@@ -48,19 +52,23 @@
         </div>
         <div class="form-group">
             <label for="city">Город</label>
-            <input type="text" class="form-control" name="city" id="city" placeholder="City">
+            <input type="text" class="form-control" name="city"
+                   id="city" placeholder="City"  value="{{ data.city }}">
         </div>
         <div class="form-group">
             <label for="occupation">Род занятий</label>
-            <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Occupation">
+            <input type="text" class="form-control" name="occupation"
+                   id="occupation" placeholder="Occupation"  value="{{ data.occupation }}">
         </div>
         <div class="form-group">
             <label for="password">Пароль</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            <input type="password" class="form-control" name="password"
+                   id="password" placeholder="Password" value="{{ data.password }}">
         </div>
         <div class="form-group">
-            <label for="password2">Повторите пароль</label>
-            <input type="password" class="form-control" name="password2" id="password2" placeholder="Password">
+            <label for="password2">Подвердите пароль</label>
+            <input type="password" class="form-control" name="password2"
+                   id="password2" placeholder="Password" value="{{ data.password }}">
         </div>
         <div class="form-group">
             <label for="birthday">День рождения</label>
@@ -68,12 +76,16 @@
         </div>
         <div class="form-group">
             <label for="phone">Номер мобильного телефона</label>
-            <input type="text" class="form-control" name="phone" id="phone" placeholder="+xx(xxx)xxxxxxx">
-            <p class="help-block small-text">Телефон виден только главе клана и используется в экстренных случаях</p>
+            <input type="text" class="form-control" name="phone"
+                   id="phone" placeholder="+xx(xxx)xxxxxxx" value="{{ data.phone }}">
+            <p class="help-block small-text">
+                Телефон виден только главе клана и используется в экстренных случаях
+            </p>
         </div>
         <div class="form-group">
             <label for="email">Электронная почта</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            <input type="email" class="form-control" name="email"
+                   id="email" placeholder="Email"  value="{{ data.email }}">
         </div>
         <div class="form-group">
             <label for="avatar">Добавить аватарку</label>
