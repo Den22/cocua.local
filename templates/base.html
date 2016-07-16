@@ -12,6 +12,9 @@
 </head>
 <body>
 <div class="container">
+
+    {% if data.cookie %}
+
     <header class="header">
         <div class="row">
             <div class="logo col-md-3">
@@ -22,9 +25,14 @@
             <div class="banner col-md-6">
                 <span>Ukrainian army</span>
             </div>
-            <div class="flag col-md-3">
+            <div class="flag col-md-2">
                 <img src="/img/flag.png" alt="">
                 <span>#CJJQQRY</span>
+            </div>
+            <div class="flag col-md-1">
+                <a class="btn btn-default btn-sm bth-transparent" href="/users/logout">
+                    <i class="glyphicon glyphicon-log-out"></i>
+                </a>
             </div>
         </div>
         <nav>
@@ -61,10 +69,48 @@
                 </li>
                 <li><a href="#">Ссылки</a></li>
                 <li><a href="#">Чорный список</a></li>
-                <li><a href="/users/one">Профиль</a></li>
+                <li><a href="/users/one/{{ data.cookie|trim('#') }}">Профиль</a></li>
             </ul>
         </nav>
     </header>
+
+    {% else %}
+
+    <header class="header">
+        <div class="row">
+            <div class="logo col-md-3">
+                <a href="/">
+                    <img src="/img/logo.png" alt="Clash of clans">
+                </a>
+            </div>
+            <div class="banner col-md-6">
+                <span>Ukrainian army</span>
+            </div>
+            <div class="flag col-md-2">
+                <img src="/img/flag.png" alt="">
+                <span>#CJJQQRY</span>
+            </div>
+            <div class="flag col-md-1">
+                <a class="btn btn-default btn-sm bth-transparent" href="/authorization">
+                    <i class="glyphicon glyphicon-log-in"></i>
+                </a>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav nav-pills">
+                <li><a href="/rules">Правила</a></li>
+                <li class="disabled"><a href="">Список клана</a></li>
+                <li class="disabled"><a href="">Обсуждение</a></li>
+                <li class="disabled"><a href="">Расстановки</a></li>
+                <li class="disabled"><a href="">Видео</a></li>
+                <li class="disabled"><a href="">Ссылки</a></li>
+                <li class="disabled"><a href="">Чорный список</a></li>
+                <li class="disabled"><a href="">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% endif %}
 
     {% block content %}{% endblock %}
 

@@ -3,18 +3,23 @@
 {% block content %}
 
 <main class="authorization">
-    <form role="form">
+    <form action="/users/authorization" role="form" method="post">
+        {% if data == 'error' %}
+        <div class="warning">
+            <p>Ошибка. Вы ввели неверные даные авторизации</p>
+        </div>
+        {% endif %}
         <div class="form-group">
             <label for="hashtag">Ваш xeштег в игре</label>
             <input type="text" class="form-control" name="hashtag" id="hashtag" placeholder="#HASHTAG">
         </div>
         <div class="form-group">
             <label for="Password">Пароль</label>
-            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
+            <input type="password" class="form-control" name="password" id="Password" placeholder="Password">
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Отправить</button>
-            <a class="btn btn-warning">Регистрация</a>
+            <a href="/registration" class="btn btn-warning">Регистрация</a>
         </div>
     </form>
 </main>

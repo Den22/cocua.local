@@ -24,10 +24,16 @@ class DB
         $this->dbh = new \PDO ($dsn, $config['db']['login'], $config['db']['password'], $opt);
     }
 
-    public function query($sql, $params = []) {
+    public function queryClass($sql, $params = []) {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
         return $sth->fetchAll(\PDO::FETCH_CLASS, $this->className);
+    }
+
+    public function queryArray($sql, $params = []) {
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute($params);
+        return $sth->fetchAll();
     }
 
     public function execute($sql, $params = []) {

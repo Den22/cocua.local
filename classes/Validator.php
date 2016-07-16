@@ -6,7 +6,7 @@ use Application\Models\Users;
 use Application\Models\Codes;
 
 
-class ValidReg extends Valid
+class Validator
 {
     public $arrayFilters = [
         'code' => [
@@ -139,15 +139,16 @@ class ValidReg extends Valid
 
     public function checkCode($inputs) {
         $code = new Codes();
-        $arr = $code->findByColumn('hashtag', $inputs['hashtag']);
-        var_dump($arr[$code->data['code']]);die;
-        if (!isset($arr[$code->data['code']]) || $arr[$arr[$code->data['code']] !== $inputs['code']) {
+        $res = $code->findByColumnArray('hashtag', $inputs['hashtag']);
+        $pair = array_pop($res);
+        if (empty($pair) || $pair['code'] !== $inputs['code']) {
             $this->disparity = [
                 'field' => '"Код доступа"',
                 'prompt' => 'Неверный код доступа'
             ];
             return true;
         }
+        $code->deleteByColumn('hashtag', $pair['hashtag']);
         return false;
     }
 
@@ -160,6 +161,22 @@ class ValidReg extends Valid
                  Если все же это ваш хештег - свяжитесь с главой клана в чате или через email d080590@gmail.com'
             ];
             return true;
+        }
+        return false;
+    }
+
+    public function checkHashtagPassword()
+    {
+        if (empty($_POST['hashtag']) || empty($_POST['password'])) {
+            return false;
+        }
+        $log_list = Users::getHashtagPasswordList();
+        foreach ($log_list as $el) {
+            if (in_array($_POST['hashtag'], $el)) {
+                if ($el['password'] == $_POST['password']) {
+                    return true;
+                }
+            }
         }
         return false;
     }

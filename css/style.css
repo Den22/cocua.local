@@ -1,7 +1,7 @@
 /* BASE BEGIN */
 
 body {
-    /*background: url('/img/index_bg.jpg') no-repeat fixed center;*/
+    background: url('/img/index_bg.jpg') no-repeat fixed center;
     font-family: "COC", Helvetica, Arial, sans-serif;
 }
 
@@ -24,7 +24,11 @@ body {
 .flag {
     margin-top: 25px;
     color: #454447;
-    font-size: 100%;
+    font-size: 90%;
+}
+
+.header .bth-transparent {
+    background-color: transparent;
 }
 
 .nav > li > a:hover,
@@ -265,6 +269,11 @@ main.authorization {
     margin: 100px auto;
 }
 
+.authorization .warning {
+    color: #ff4d65;
+    font-size: 80%;
+}
+
 /*AUTHORIZATION  END*/
 /*REGISTRATION BEGIN*/
 
@@ -280,7 +289,6 @@ main.registration {
 .registration .warning {
     color: #ff4d65;
     font-size: 80%;
-
 }
 
 

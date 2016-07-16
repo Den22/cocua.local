@@ -31,7 +31,7 @@ abstract class AbstractModel
         $db = new DB();
         $db->className = get_called_class();
         $sql = 'SELECT * FROM ' . static::$table;
-        return $db->query($sql);
+        return $db->queryClass($sql);
     }
 
     public static function findOneByPk($id)
@@ -39,7 +39,7 @@ abstract class AbstractModel
         $db = new DB();
         $db->className = get_called_class();
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id = :id';
-        $res = $db->query($sql, [':id' => $id]);
+        $res = $db->queryClass($sql, [':id' => $id]);
         return array_pop($res);
     }
 
@@ -61,12 +61,61 @@ abstract class AbstractModel
         $this->id = $db->dbh->lastInsertId();
     }
 
+    public function update()
+    {
+        $cols = array_keys($this->data);
+        $data = [];
+        $upt = [];
+        foreach ($cols as $col) {
+            $data[':' . $col] = $this->data[$col];
+            $upt[] = $col . '= :' . $col;
+        }
+        $sql = '
+            UPDATE ' . static::$table . '
+            SET
+            ' . implode(', ', $upt) . '
+            WHERE id = :id
+        ';
+        $data[':id'] = $this->id;
+        $db = new DB();
+        $db->execute($sql, $data);
+    }
+
+    public function delete()
+    {
+        $sql = '
+            DELETE
+            FROM ' . static::$table . '
+            WHERE id = :id
+        ';
+        $db = new DB();
+        $db->execute($sql, [':id' => $this->id]);
+    }
+
+    public function deleteByColumn($column, $value)
+    {
+        $sql = '
+            DELETE
+            FROM ' . static::$table . '
+            WHERE ' . $column . ' = :value'
+        ;
+        $db = new DB();
+        $db->execute($sql, [':value' => $value]);
+    }
+
     public static function findByColumn($column, $value)
     {
         $db = new DB();
         $db->className = get_called_class();
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . ' = :value';
-        return $db->query($sql, [':value' => $value]);
+        return $db->queryClass($sql, [':value' => $value]);
+    }
+
+    public static function findByColumnArray($column, $value)
+    {
+        $db = new DB();
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . ' = :value';
+        return $db->queryArray($sql, [':value' => $value]);
     }
 
 }

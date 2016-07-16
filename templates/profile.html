@@ -10,47 +10,47 @@
         <tbody>
         <tr>
             <th>Хештег</th>
-            <th>{{ data.hashtag|upper }}</th>
+            <th>{{ data.user.hashtag|upper }}</th>
         </tr>
         <tr>
             <th>Ник</th>
-            <th>{{ data.nick }}</th>
+            <th>{{ data.user.nick }}</th>
         </tr>
         <tr>
             <th>Имя</th>
-            <th>{{ data.name }}</th>
+            <th>{{ data.user.name }}</th>
         </tr>
         <tr>
             <th>Звание</th>
-            <th>{{ data.rank }}</th>
+            <th>{{ data.user.rank }}</th>
         </tr>
         <tr>
             <th>Отдано доната</th>
-            <th>{{ data.given }}</th>
+            <th>{{ data.user.given }}</th>
         </tr>
         <tr>
             <th>Взято доната</th>
-            <th>{{ data.taken }}</th>
+            <th>{{ data.user.taken }}</th>
         </tr>
         <tr>
             <th>Коэфициент доната</th>
-            <th>{{ data.ratio|round(3) }}</th>
+            <th>{{ data.user.ratio|round(3) }}</th>
         </tr>
         <tr>
             <th>Штрафные балы</th>
-            <th>{{ data.points }}</th>
+            <th>{{ data.user.points }}</th>
         </tr>
         <tr>
             <th>День рождения</th>
-            <th>{{ data.birthday }}</th>
+            <th>{{ data.user.birthday }}</th>
         </tr>
         <tr>
             <th>Город</th>
-            <th>{{ data.city }}</th>
+            <th>{{ data.user.city }}</th>
         </tr>
         <tr>
             <th>Деятельность</th>
-            <th>{{ data.occupation }}</th>
+            <th>{{ data.user.occupation }}</th>
         </tr>
         </tbody>
     </table>

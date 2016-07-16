@@ -13,7 +13,7 @@
             <th colspan="2">Донат за все время</th>
             <th rowspan="2">Коэф. доната</th>
             <th rowspan="2">Штраф. балы</th>
-            <th rowspan="2">День рождения</th>
+            <th rowspan="2">Возраст</th>
             <th rowspan="2">Город</th>
         </tr>
         <tr>
@@ -22,17 +22,17 @@
         </tr>
         </thead>
         <tbody>
-        {% for user in data %}
+        {% for user in data.users %}
         <tr>
             <td>{{ user.hashtag|upper }}</td>
-            <td><a href="/users/one/{{user.id}}">{{ user.nick }}</a></td>
+            <td><a href="/users/one/{{user.hashtag|trim('#')}}">{{ user.nick }}</a></td>
             <td>{{ user.name }}</td>
             <td>{{ user.rank }}</td>
             <td>{{ user.given }}</td>
             <td>{{ user.taken }}</td>
             <td>{{ user.ratio|round(3)}}</td>
             <td>{{ user.points }}</td>
-            <td>{{ user.birthday }}</td>
+            <td>{{ user.years }}</td>
             <td>{{ user.city }}</td>
         </tr>
         {% endfor %}
