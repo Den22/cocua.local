@@ -8,3 +8,5 @@ $config = [
         'password' => ''
     ]
 ];
+
+define('DIRSEP', DIRECTORY_SEPARATOR);

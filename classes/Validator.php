@@ -17,45 +17,45 @@ class Validator
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\#[A-Za-z0-9]{9}$/']
         ],
-        'nick'=> [
+        'nick' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\X{3,16}$/']
         ],
-        'name'=> [
+        'name' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\X{3,16}$/']
         ],
-        'rank'=> [
+        'rank' => [
             'filter' => FILTER_UNSAFE_RAW
         ],
-        'city'=> [
+        'city' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\X{3,16}$/u']
         ],
-        'occupation'=> [
+        'occupation' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\X{3,32}$/u']
         ],
-        'password'=> [
+        'password' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^[a-zA-Zа-яА-Я0-9]{6,16}$/']
         ],
-        'password2'=> [
+        'password2' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^[a-zA-Zа-яА-Я0-9]{6,16}$/']
         ],
-        'birthday'=> [
+        'birthday' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^(1|2)(9|0)\d\d\-(0|1)\d\-[0-3]\d$/']
         ],
-        'phone'=> [
+        'phone' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^\+\d{2}\(\d{3}\)\d{7}$/']
         ],
-        'email'=> [
+        'email' => [
             'filter' => FILTER_VALIDATE_EMAIL
         ],
-        'readRules'=> [
+        'readRules' => [
             'filter' => FILTER_UNSAFE_RAW
         ]
     ];
@@ -63,52 +63,52 @@ class Validator
         'code' => [
             'field' => '"Код доступа"',
             'prompt' => 'Должно быть в формате "123456"'
-            ],
+        ],
         'hashtag' => [
             'field' => '"Ваш хештег в игре"',
             'prompt' => 'Должно быть в формате "#XXXXXXXXX"'
         ],
-        'nick'=> [
+        'nick' => [
             'field' => '"Ник в игре"',
             'prompt' => 'Должно быть от 3 до 16 символов'
         ],
-        'name'=> [
+        'name' => [
             'field' => '"Имя"',
             'prompt' => 'Должно быть от 3 до 16 символов'
         ],
-        'rank'=> [
+        'rank' => [
             'field' => '"Звание"',
             'prompt' => ''
         ],
-        'city'=> [
+        'city' => [
             'field' => '"Город"',
             'prompt' => 'Должно быть от 3 до 16 символов'
         ],
-        'occupation'=> [
+        'occupation' => [
             'field' => '"Род занятий"',
             'prompt' => 'Должно быть от 3 до 32 символов'
         ],
-        'password'=> [
+        'password' => [
             'field' => '"Пароль"',
             'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
-        'password2'=> [
+        'password2' => [
             'field' => '"Подвердите пароль"',
             'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
-        'birthday'=> [
+        'birthday' => [
             'field' => '"День рождения"',
             'prompt' => 'Должено быть в формате "ДД.ММ.РРРР"'
         ],
-        'phone'=> [
+        'phone' => [
             'field' => '"Номер мобильного телефона"',
             'prompt' => 'Должено быть в формате "+хх(ххх)ххххххх"'
         ],
-        'email'=> [
+        'email' => [
             'field' => '"Электронная почта"',
             'prompt' => 'Неверный формат почты'
         ],
-        'readRules'=> [
+        'readRules' => [
             'field' => '"Я прочитал правила"',
             'prompt' => 'Потвердите ознакомление с правилами клана'
         ]
@@ -116,9 +116,10 @@ class Validator
 
     public $disparity;
 
-    public function checkAll($inputs) {
+    public function checkAll($inputs)
+    {
         foreach ($inputs as $key => $input) {
-            if ($input == false) {
+            if (empty($input) || $input === false) {
                 $this->disparity = $this->arrayNames[$key];
                 return true;
             }
@@ -126,7 +127,8 @@ class Validator
         return false;
     }
 
-    public function checkMatchPass($inputs) {
+    public function checkMatchPass($inputs)
+    {
         if ($inputs['password'] !== $inputs['password2']) {
             $this->disparity = [
                 'field' => '"Пароль"',
@@ -137,7 +139,8 @@ class Validator
         return false;
     }
 
-    public function checkCode($inputs) {
+    public function checkCode($inputs)
+    {
         $code = new Codes();
         $res = $code->findByColumnArray('hashtag', $inputs['hashtag']);
         $pair = array_pop($res);
@@ -152,7 +155,8 @@ class Validator
         return false;
     }
 
-    public function checkExistHashtag($inputs) {
+    public function checkExistHashtag($inputs)
+    {
         $user = new Users();
         if ($user->findByColumn('hashtag', $inputs['hashtag'])) {
             $this->disparity = [
@@ -170,15 +174,14 @@ class Validator
         if (empty($_POST['hashtag']) || empty($_POST['password'])) {
             return false;
         }
-        $log_list = Users::getHashtagPasswordList();
-        foreach ($log_list as $el) {
-            if (in_array($_POST['hashtag'], $el)) {
-                if ($el['password'] == $_POST['password']) {
+        $hashtags = Users::getHashtagPasswordList();
+        foreach ($hashtags as $hashtag) {
+            if (in_array($_POST['hashtag'], $hashtag)) {
+                if ($hashtag['password'] == $_POST['password']) {
                     return true;
                 }
             }
         }
         return false;
     }
-
 }

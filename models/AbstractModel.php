@@ -97,8 +97,7 @@ abstract class AbstractModel
         $sql = '
             DELETE
             FROM ' . static::$table . '
-            WHERE ' . $column . ' = :value'
-        ;
+            WHERE ' . $column . ' = :value';
         $db = new DB();
         $db->execute($sql, [':value' => $value]);
     }
@@ -117,5 +116,4 @@ abstract class AbstractModel
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . ' = :value';
         return $db->queryArray($sql, [':value' => $value]);
     }
-
 }

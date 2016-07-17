@@ -2,15 +2,15 @@
 
 namespace Application\Controllers;
 
-use Application\Classes\Cookie;
 use Application\Classes\View;
+use Application\Classes\Cookie;
 
 class Home
 {
     public function actionShow()
     {
-        $view = new View();
         $cookie = Cookie::get('hashtag');
+        $view = new View();
         $view->data['cookie'] = $cookie;
         $view->display('home');
     }

@@ -15,100 +15,102 @@
 
     {% if data.cookie %}
 
-    <header class="header">
-        <div class="row">
-            <div class="logo col-md-3">
-                <a href="/">
-                    <img src="/img/logo.png" alt="Clash of clans">
-                </a>
+        <header class="header">
+            <div class="row">
+                <div class="logo col-md-3">
+                    <a href="/">
+                        <img src="/img/logo.png" alt="Clash of clans">
+                    </a>
+                </div>
+                <div class="banner col-md-5 text-center">
+                    <span>Ukrainian army</span>
+                </div>
+                <div class="flag col-md-2">
+                    <img src="/img/flag.png" alt="">
+                    <span>#CJJQQRY</span>
+                </div>
+                <div class="flag col-md-2 text-right">
+                    <a class="btn btn-default btn-sm bth-transparent" href="/users/logout">
+                        <i class="glyphicon glyphicon-log-out"></i>
+                        <span class="small">Выход</span>
+                    </a>
+                </div>
             </div>
-            <div class="banner col-md-6">
-                <span>Ukrainian army</span>
-            </div>
-            <div class="flag col-md-2">
-                <img src="/img/flag.png" alt="">
-                <span>#CJJQQRY</span>
-            </div>
-            <div class="flag col-md-1">
-                <a class="btn btn-default btn-sm bth-transparent" href="/users/logout">
-                    <i class="glyphicon glyphicon-log-out"></i>
-                </a>
-            </div>
-        </div>
-        <nav>
-            <ul class="nav nav-pills">
-                <li><a href="/rules">Правила</a></li>
-                <li><a href="/users/all">Список клана</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обсуждение</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Правила</a></li>
-                        <li><a href="#">Базы</a></li>
-                        <li><a href="#">Атаки</a></li>
-                        <li><a href="#">Фарм</a></li>
-                        <li><a href="#">Флуд</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Расстановки</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">8 TX</a></li>
-                        <li><a href="#">9 TX</a></li>
-                        <li><a href="#">10 TX</a></li>
-                        <li><a href="#">11 TX</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Видео</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">8 TX</a></li>
-                        <li><a href="#">9 TX</a></li>
-                        <li><a href="#">10 TX</a></li>
-                        <li><a href="#">11 TX</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Ссылки</a></li>
-                <li><a href="#">Чорный список</a></li>
-                <li><a href="/users/one/{{ data.cookie|trim('#') }}">Профиль</a></li>
-            </ul>
-        </nav>
-    </header>
+            <nav>
+                <ul class="nav nav-pills">
+                    <li><a href="/rules">Правила</a></li>
+                    <li><a href="/users/all">Список клана</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обсуждение</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Правила</a></li>
+                            <li><a href="#">Базы</a></li>
+                            <li><a href="#">Атаки</a></li>
+                            <li><a href="#">Фарм</a></li>
+                            <li><a href="#">Флуд</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Расстановки</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">8 TX</a></li>
+                            <li><a href="#">9 TX</a></li>
+                            <li><a href="#">10 TX</a></li>
+                            <li><a href="#">11 TX</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Видео</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">8 TX</a></li>
+                            <li><a href="#">9 TX</a></li>
+                            <li><a href="#">10 TX</a></li>
+                            <li><a href="#">11 TX</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Ссылки</a></li>
+                    <li><a href="#">Чорный список</a></li>
+                    <li><a href="/users/one/{{ data.cookie|trim('#') }}">Профиль</a></li>
+                </ul>
+            </nav>
+        </header>
 
     {% else %}
 
-    <header class="header">
-        <div class="row">
-            <div class="logo col-md-3">
-                <a href="/">
-                    <img src="/img/logo.png" alt="Clash of clans">
-                </a>
+        <header class="header">
+            <div class="row">
+                <div class="logo col-md-3">
+                    <a href="/">
+                        <img src="/img/logo.png" alt="Clash of clans">
+                    </a>
+                </div>
+                <div class="banner col-md-5">
+                    <span>Ukrainian army</span>
+                </div>
+                <div class="flag col-md-2">
+                    <img src="/img/flag.png" alt="">
+                    <span>#CJJQQRY</span>
+                </div>
+                <div class="flag col-md-2 text-right">
+                    <a class="btn btn-default btn-sm bth-transparent" href="/authorization">
+                        <span class="small">Вход</span>
+                        <i class="glyphicon glyphicon-log-in"></i>
+                    </a>
+                </div>
             </div>
-            <div class="banner col-md-6">
-                <span>Ukrainian army</span>
-            </div>
-            <div class="flag col-md-2">
-                <img src="/img/flag.png" alt="">
-                <span>#CJJQQRY</span>
-            </div>
-            <div class="flag col-md-1">
-                <a class="btn btn-default btn-sm bth-transparent" href="/authorization">
-                    <i class="glyphicon glyphicon-log-in"></i>
-                </a>
-            </div>
-        </div>
-        <nav>
-            <ul class="nav nav-pills">
-                <li><a href="/rules">Правила</a></li>
-                <li class="disabled"><a href="">Список клана</a></li>
-                <li class="disabled"><a href="">Обсуждение</a></li>
-                <li class="disabled"><a href="">Расстановки</a></li>
-                <li class="disabled"><a href="">Видео</a></li>
-                <li class="disabled"><a href="">Ссылки</a></li>
-                <li class="disabled"><a href="">Чорный список</a></li>
-                <li class="disabled"><a href="">Профиль</a></li>
-            </ul>
-        </nav>
-    </header>
+            <nav>
+                <ul class="nav nav-pills">
+                    <li><a href="/rules">Правила</a></li>
+                    <li class="disabled"><a href="">Список клана</a></li>
+                    <li class="disabled"><a href="">Обсуждение</a></li>
+                    <li class="disabled"><a href="">Расстановки</a></li>
+                    <li class="disabled"><a href="">Видео</a></li>
+                    <li class="disabled"><a href="">Ссылки</a></li>
+                    <li class="disabled"><a href="">Чорный список</a></li>
+                    <li class="disabled"><a href="">Профиль</a></li>
+                </ul>
+            </nav>
+        </header>
 
     {% endif %}
 
@@ -116,9 +118,9 @@
 
 </div>
 <!--<div class="container navbar-fixed-bottom">-->
-    <!--<footer id="footer ">-->
-        <!--<p class="text-muted">2016 © Den Mishchenko </p>-->
-    <!--</footer>-->
+<!--<footer id="footer ">-->
+<!--<p class="text-muted">2016 © Den Mishchenko </p>-->
+<!--</footer>-->
 <!--</div>-->
 </body>
 </html>

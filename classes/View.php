@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Den
- * Date: 09.07.2016
- * Time: 19:04
- */
 
 namespace Application\Classes;
 

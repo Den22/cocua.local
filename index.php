@@ -5,5 +5,8 @@ require __DIR__ . '/config.php';
 
 use Application\Classes\Route;
 
-Route::run();
-
+try {
+    Route::run();
+} catch (\Exception $e) {
+    echo $e->getMessage();
+}
