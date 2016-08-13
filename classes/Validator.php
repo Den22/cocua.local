@@ -155,7 +155,7 @@ class Validator
         return false;
     }
 
-    public function checkExistHashtag($inputs)
+    public function checkExistHashtag($inputs)                      
     {
         $user = new Users();
         if ($user->findByColumn('hashtag', $inputs['hashtag'])) {
