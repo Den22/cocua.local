@@ -18,7 +18,10 @@ abstract class AbstractModel
 
     public function __get($k)
     {
-        return $this->data[$k];
+        if (isset($this->data[$k])) {
+            return $this->data[$k];
+        }
+        return null;
     }
 
     public function __isset($k)

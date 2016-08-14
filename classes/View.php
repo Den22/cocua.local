@@ -22,7 +22,10 @@ class View
 
     public function __get($key)
     {
-        return $this->data[$key];
+        if (isset($this->data[$key])) {
+            return $this->data[$key];
+        }
+        return null;
     }
 
     public function display($path) {

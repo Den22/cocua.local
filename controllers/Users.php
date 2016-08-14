@@ -66,7 +66,7 @@ class Users
         header('Location: /users/one/' . trim($user->hashtag, '#'));
     }
 
-    public function actionAuthorization()
+    public function actionLogIn()
     {
         $valid = new Validator();
         $view = new View();
@@ -79,7 +79,7 @@ class Users
         header('Location: /');
     }
 
-    public function actionLogout()
+    public function actionLogOut()
     {
         Cookie::delete('hashtag');
         header('Location: /');
