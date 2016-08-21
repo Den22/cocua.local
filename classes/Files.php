@@ -19,16 +19,9 @@ class Files
         return $res;
     }
 
-    public static function AddAvatar()
+    public static function AddImage($dir)
     {
-        $uploadDir = dirname(__DIR__) . DIRSEP . 'img' . DIRSEP . 'avatars' . DIRSEP;
-        $res = self::uploadedFile($uploadDir);
-        return $res;
-    }
-
-    public static function AddPlan()
-    {
-        $uploadDir = dirname(__DIR__) . DIRSEP . 'img' . DIRSEP . 'plans' . DIRSEP;
+        $uploadDir = dirname(__DIR__) . DIRSEP . 'img' . DIRSEP . $dir . DIRSEP;
         $res = self::uploadedFile($uploadDir);
         return $res;
     }

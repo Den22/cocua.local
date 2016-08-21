@@ -1,14 +1,14 @@
 <?php
 
-namespace Application\Classes;
+namespace Application\Validators;
 
 use Application\Models\Users;
 use Application\Models\Codes;
 
 
-class Validator
+class UserValidator extends AbstractValidator
 {
-    public $userFilters = [
+    public $Filters = [
         'code' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^[0-9]{6}$/']
@@ -59,7 +59,7 @@ class Validator
             'filter' => FILTER_UNSAFE_RAW
         ]
     ];
-    public $userErrorsMessage = [
+    public $ErrorsMessage = [
         'code' => [
             'field' => '"Код доступа"',
             'prompt' => 'Должно быть в формате "123456"'
@@ -114,60 +114,12 @@ class Validator
         ]
     ];
 
-    public $linkFilters = [
-        'title' => [
-            'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^\X{3,32}$/u']
-        ],
-        'link' => [
-            'filter' => FILTER_VALIDATE_URL
-        ]
-    ];
-
-    public $linkErrorsMessage = [
-        'title' => [
-            'field' => '"Тема"',
-            'prompt' => 'Должно быть от 3 до 32 символов'
-        ],
-        'link' => [
-            'field' => '"Ссылка"',
-            'prompt' => 'Неверный формат ссылки'
-        ]
-    ];
-
-    public $planFilters = [
-        'description' => [
-            'filter' => FILTER_VALIDATE_REGEXP,
-            'options' => ['regexp' => '/^\X{3,80}$/u']
-        ],
-        'townhole' => [
-            'filter' => FILTER_UNSAFE_RAW
-        ]
-    ];
-
-    public $planErrorsMessage = [
-        'description' => [
-            'field' => '"Описание"',
-            'prompt' => 'Должно быть от 3 до 80 символов'
-        ]
-    ];
-
-    public $disparity;
-    public $inputs;
-
-    public function checkAll()
+    public function extraChecks()
     {
-        $this->inputs = filter_input_array(INPUT_POST, $this->userFilters);
-        foreach ($this->inputs as $key => $input) {
-            if (empty($input) || $input === false) {
-                $this->disparity = $this->userErrorsMessage[$key];
-                return false;
-            }
-        }
         if ($this->checkMatchPass() || $this->checkExistHashtag() || $this->checkCode()) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private function checkMatchPass()
@@ -200,8 +152,7 @@ class Validator
 
     private function checkExistHashtag()
     {
-        $user = new Users();
-        $res = $user->findByColumnClass('hashtag', $this->inputs['hashtag']);
+        $res = Users::findByColumnClass('hashtag', $this->inputs['hashtag']);
         if ($res) {
             $this->disparity = [
                 'field' => '"Ваш хештег в игре"',
@@ -225,27 +176,4 @@ class Validator
         return false;
     }
 
-    public function checkLink()
-    {
-        $this->inputs = filter_input_array(INPUT_POST, $this->linkFilters);
-        foreach ($this->inputs as $key => $input) {
-            if (empty($input) || $input === false) {
-                $this->disparity = $this->linkErrorsMessage[$key];
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public function checkPlan()
-    {
-        $this->inputs = filter_input_array(INPUT_POST, $this->planFilters);
-        foreach ($this->inputs as $key => $input) {
-            if (empty($input) || $input === false) {
-                $this->disparity = $this->planErrorsMessage[$key];
-                return false;
-            }
-        }
-        return true;
-    }
 }

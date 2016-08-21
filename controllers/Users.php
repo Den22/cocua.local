@@ -2,11 +2,12 @@
 
 namespace Application\Controllers;
 
+use Application\classes\Convert;
 use Application\Classes\Files;
 use Application\Models\Users as UsersModel;
 use Application\Classes\View;
-use Application\Classes\Validator;
 use Application\Classes\Cookie;
+use Application\Validators\UserValidator;
 
 class Users
 {
@@ -17,7 +18,7 @@ class Users
             header("Location: /users/authorization");
         }
         $users = UsersModel::findAll();
-        UsersModel::convertBirthdayToAge($users);
+        Convert::birthdayToAge($users);
         $view = new View();
         $view->data['users'] = $users;
         $view->data['cookie'] = $cookie;
@@ -39,20 +40,20 @@ class Users
 
     public function actionAddUser()
     {
-        $valid = new Validator();
+        $valid = new UserValidator();
         $view = new View();
-        if (!$valid->checkAll()) {
+        if ($valid->checkForm() || $valid->extraChecks()) {
             $view->data = $valid->inputs;
             $view->data['error'] = $valid->disparity;
             $view->display('registration');
             die;
         }
         $user = new UsersModel();
+        unset($valid->inputs['code'], $valid->inputs['password2'], $valid->inputs['readRules']);
         $user->data = $valid->inputs;
-        unset($user->data['code'], $user->data['password2'], $user->data['readRules']);
         $user->data['date'] = date("Y-m-d");
         if (!empty($_FILES['file']['name'])) {
-            Files::AddAvatar();
+            Files::AddImage('users');
             $user->data['avatarName'] = $_FILES['file']['name'];
         } else {
             $user->data['avatarName'] = 'avatar.jpg';
@@ -64,7 +65,7 @@ class Users
 
     public function actionLogIn()
     {
-        $valid = new Validator();
+        $valid = new UserValidator();
         $view = new View();
         if (!$valid->checkHashtagPassword()) {
             $view->data = 'error';

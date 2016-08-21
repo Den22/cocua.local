@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\controllers;
+namespace Application\Controllers;
 
 use Application\Classes\Cookie;
-use Application\Classes\Validator;
 use Application\Classes\View;
 use Application\Models\Links as LinksModel;
+use Application\Validators\LinkValidator;
 
 
 class Links
@@ -36,9 +36,9 @@ class Links
 
     public function actionAddLink()
     {
-        $valid = new Validator();
+        $valid = new LinkValidator();
         $view = new View();
-        if (!$valid->checkLink()) {
+        if ($valid->checkForm()) {
             $view->data = $valid->inputs;
             $view->data['error'] = $valid->disparity;
             $view->data['cookie'] = Cookie::get('hashtag');

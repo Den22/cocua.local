@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\models;
+namespace Application\Models;
 
 
 class Plans extends AbstractModel

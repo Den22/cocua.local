@@ -1,14 +1,14 @@
 <?php
 
-namespace Application\controllers;
+namespace Application\Controllers;
 
 
 use Application\Classes\Cookie;
 use Application\Classes\Files;
-use Application\Classes\Validator;
 use Application\Classes\View;
 use Application\Models\Plans as PlansModel;
 use Application\Models\Users;
+use Application\Validators\PlanValidator;
 
 class Plans
 {
@@ -39,9 +39,9 @@ class Plans
 
     public function actionAddPlan()
     {
-        $valid = new Validator();
+        $valid = new PlanValidator();
         $view = new View();
-        if (!$valid->checkPlan()) {
+        if ($valid->checkForm() || $valid->checkFile()) {
             $view->data = $valid->inputs;
             $view->data['error'] = $valid->disparity;
             $view->data['cookie'] = Cookie::get('hashtag');
@@ -50,22 +50,11 @@ class Plans
         }
         $plan = new PlansModel();
         $plan->data = $valid->inputs;
-        if (!empty($_FILES['file']['name'])) {
-            Files::AddPlan();
-            $plan->data['planName'] = $_FILES['file']['name'];
-        } else {
-            $view->data = $plan->data;
-            $view->data['error'] = [
-                'field' => '"Файл"',
-                'prompt' => 'Не выбрано ни одного файла'
-            ];
-            $view->data['cookie'] = Cookie::get('hashtag');
-            $view->display('addPlan');
-            die;
-        }
+        Files::AddImage('plans');
+        $plan->data['planName'] = $_FILES['file']['name'];
         $plan->data['authorHashtag'] = Cookie::get('hashtag');
-        $name = Users::findByColumnArray('hashtag', $plan->data['authorHashtag']);
-        $plan->data['author'] = array_pop($name);
+        $user = Users::findByColumnArray('hashtag', $plan->data['authorHashtag']);
+        $plan->data['author'] = $user['0']['nick'];
         $plan->insert();
         header('Location: /plans/all/' . $plan->data['townhole']);
     }
