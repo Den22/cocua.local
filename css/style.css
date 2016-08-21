@@ -275,6 +275,19 @@ main.authorization {
 }
 
 /*AUTHORIZATION  END*/
+/*ADDLINK BEGIN*/
+
+main.add-link {
+    width: 650px;
+    margin: 100px auto;
+}
+
+.add-link .warning {
+    color: #ff4d65;
+    font-size: 80%;
+}
+
+/*ADDLINK  END*/
 /*REGISTRATION BEGIN*/
 
 main.registration {

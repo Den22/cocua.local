@@ -14,7 +14,7 @@ class Users
     {
         $cookie = Cookie::get('hashtag');
         if (empty($cookie)) {
-            header("Location: /authorization");
+            header("Location: /users/authorization");
         }
         $users = UsersModel::findAll();
         UsersModel::convertBirthdayToAge($users);
@@ -28,9 +28,9 @@ class Users
     {
         $cookie = Cookie::get('hashtag');
         if (empty($cookie)) {
-            header("Location: /authorization");
+            header("Location: /users/authorization");
         }
-        $user = UsersModel::findByColumn('hashtag', '#' . $hashtag);
+        $user = UsersModel::findByColumnClass('hashtag', '#' . $hashtag);
         $view = new View();
         $view->data['user'] = array_pop($user);
         $view->data['cookie'] = $cookie;
@@ -41,19 +41,15 @@ class Users
     {
         $valid = new Validator();
         $view = new View();
-        $inputs = filter_input_array(INPUT_POST, $valid->arrayFilters);
-        if ($valid->checkAll($inputs) ||
-            $valid->checkMatchPass($inputs) ||
-            $valid->checkExistHashtag($inputs) ||
-            $valid->checkCode($inputs)
-        ) {
-            $view->data = array_merge($valid->disparity, $inputs);
+        if (!$valid->checkAll()) {
+            $view->data = $valid->inputs;
+            $view->data['error'] = $valid->disparity;
             $view->display('registration');
             die;
         }
-        unset($inputs['code'], $inputs['password2'], $inputs['readRules']);
         $user = new UsersModel();
-        $user->data = $inputs;
+        $user->data = $valid->inputs;
+        unset($user->data['code'], $user->data['password2'], $user->data['readRules']);
         $user->data['date'] = date("Y-m-d");
         if (!empty($_FILES['file']['name'])) {
             Files::AddAvatar();
@@ -83,5 +79,25 @@ class Users
     {
         Cookie::delete('hashtag');
         header('Location: /');
+    }
+
+    public function actionAuthorization()
+    {
+        $cookie = Cookie::get('hashtag');
+        if (!empty($cookie)) {
+            header('Location: /');
+        }
+        $view = new View();
+        $view->display('authorization');
+    }
+
+    public function actionRegistration()
+    {
+        $cookie = Cookie::get('hashtag');
+        if (!empty($cookie)) {
+            header('Location: /');
+        }
+        $view = new View();
+        $view->display('registration');
     }
 }

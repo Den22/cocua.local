@@ -6,7 +6,7 @@
     <form action="/users/logIn" role="form" method="post">
         {% if data == 'error' %}
         <div class="warning">
-            <p>Ошибка. Вы ввели неверные даные авторизации</p>
+            <p>Ошибка. Неверные даные авторизации</p>
         </div>
         {% endif %}
         <div class="form-group">
@@ -19,7 +19,7 @@
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Отправить</button>
-            <a href="/registration" class="btn btn-warning">Регистрация</a>
+            <a href="/users/registration" class="btn btn-warning">Регистрация</a>
         </div>
     </form>
 </main>

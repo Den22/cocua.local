@@ -105,7 +105,7 @@ abstract class AbstractModel
         $db->execute($sql, [':value' => $value]);
     }
 
-    public static function findByColumn($column, $value)
+    public static function findByColumnClass($column, $value)
     {
         $db = new DB();
         $db->className = get_called_class();

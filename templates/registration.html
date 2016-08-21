@@ -4,9 +4,9 @@
 
 <main class="registration">
     <form action="/users/adduser" role="form" method="post" enctype="multipart/form-data">
-        {% if data.field is defined %}
+        {% if data.error.field is defined %}
         <div class="warning">
-            <p>Поле {{ data.field }} заполнено не корректно. {{ data.prompt }}
+            <p>Поле {{ data.error.field }} заполнено не корректно. {{ data.error.prompt }}
         </div>
         {% endif %}
         <div class="form-group">
@@ -68,11 +68,11 @@
         <div class="form-group">
             <label for="password2">Подвердите пароль</label>
             <input type="password" class="form-control" name="password2"
-                   id="password2" placeholder="Password" value="{{ data.password }}">
+                   id="password2" placeholder="Password" value="{{ data.password2 }}">
         </div>
         <div class="form-group">
             <label for="birthday">День рождения</label>
-            <input type="date" class="form-control" name="birthday" id="birthday">
+            <input type="date" class="form-control" name="birthday" id="birthday" value="{{ data.birthday }}">
         </div>
         <div class="form-group">
             <label for="phone">Номер мобильного телефона</label>
@@ -93,7 +93,7 @@
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="readRules"> Я прочитал правила
+                <input type="checkbox" name="readRules" {% if data.readRules %} checked {% endif %}> Я прочитал правила
             </label>
         </div>
         <div class="text-center">

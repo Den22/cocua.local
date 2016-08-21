@@ -8,7 +8,7 @@ use Application\Models\Codes;
 
 class Validator
 {
-    public $arrayFilters = [
+    public $userFilters = [
         'code' => [
             'filter' => FILTER_VALIDATE_REGEXP,
             'options' => ['regexp' => '/^[0-9]{6}$/']
@@ -59,7 +59,7 @@ class Validator
             'filter' => FILTER_UNSAFE_RAW
         ]
     ];
-    public $arrayNames = [
+    public $userErrorsMessage = [
         'code' => [
             'field' => '"Код доступа"',
             'prompt' => 'Должно быть в формате "123456"'
@@ -90,11 +90,11 @@ class Validator
         ],
         'password' => [
             'field' => '"Пароль"',
-            'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
+            'prompt' => 'Должно быть от 6 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
         'password2' => [
             'field' => '"Подвердите пароль"',
-            'prompt' => 'Должно быть от 3 до 16 символов и включать в себя только буквенные или цифровые символы'
+            'prompt' => 'Должно быть от 6 до 16 символов и включать в себя только буквенные или цифровые символы'
         ],
         'birthday' => [
             'field' => '"День рождения"',
@@ -114,22 +114,48 @@ class Validator
         ]
     ];
 
-    public $disparity;
+    public $linkFilters = [
+        'title' => [
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => ['regexp' => '/^\X{3,32}$/u']
+        ],
+        'link' => [
+            'filter' => FILTER_VALIDATE_URL
+        ]
+    ];
 
-    public function checkAll($inputs)
+    public $linkErrorsMessage = [
+        'title' => [
+            'field' => '"Тема"',
+            'prompt' => 'Должно быть от 3 до 32 символов'
+        ],
+        'link' => [
+            'field' => '"Ссылка"',
+            'prompt' => 'Неверный формат ссылки'
+        ]
+    ];
+
+    public $disparity;
+    public $inputs;
+
+    public function checkAll()
     {
-        foreach ($inputs as $key => $input) {
+        $this->inputs = filter_input_array(INPUT_POST, $this->userFilters);
+        foreach ($this->inputs as $key => $input) {
             if (empty($input) || $input === false) {
-                $this->disparity = $this->arrayNames[$key];
-                return true;
+                $this->disparity = $this->userErrorsMessage[$key];
+                return false;
             }
         }
-        return false;
+        if ($this->checkMatchPass() || $this->checkExistHashtag() || $this->checkCode()) {
+            return false;
+        }
+        return true;
     }
 
-    public function checkMatchPass($inputs)
+    private function checkMatchPass()
     {
-        if ($inputs['password'] !== $inputs['password2']) {
+        if ($this->inputs['password'] !== $this->inputs['password2']) {
             $this->disparity = [
                 'field' => '"Пароль"',
                 'prompt' => 'Поля "Пароль" и "Подвердите пароль" не совпадают'
@@ -139,12 +165,12 @@ class Validator
         return false;
     }
 
-    public function checkCode($inputs)
+    private function checkCode()
     {
         $code = new Codes();
-        $res = $code->findByColumnArray('hashtag', $inputs['hashtag']);
+        $res = $code->findByColumnArray('hashtag', $this->inputs['hashtag']);
         $pair = array_pop($res);
-        if (empty($pair) || $pair['code'] !== $inputs['code']) {
+        if (empty($pair) || $pair['code'] !== $this->inputs['code']) {
             $this->disparity = [
                 'field' => '"Код доступа"',
                 'prompt' => 'Неверный код доступа'
@@ -155,10 +181,11 @@ class Validator
         return false;
     }
 
-    public function checkExistHashtag($inputs)                      
+    private function checkExistHashtag()
     {
         $user = new Users();
-        if ($user->findByColumn('hashtag', $inputs['hashtag'])) {
+        $res = $user->findByColumnClass('hashtag', $this->inputs['hashtag']);
+        if ($res) {
             $this->disparity = [
                 'field' => '"Ваш хештег в игре"',
                 'prompt' => 'Данный хештег зарегистрирован за другим пользователем.
@@ -174,14 +201,22 @@ class Validator
         if (empty($_POST['hashtag']) || empty($_POST['password'])) {
             return false;
         }
-        $hashtags = Users::getHashtagPasswordList();
-        foreach ($hashtags as $hashtag) {
-            if (in_array($_POST['hashtag'], $hashtag)) {
-                if ($hashtag['password'] == $_POST['password']) {
-                    return true;
-                }
-            }
+        $hashtag = Users::findByColumnArray('hashtag', $_POST['hashtag']);
+        if (!empty($hashtag) && $hashtag['0']['password'] == $_POST['password']) {
+            return true;
         }
         return false;
+    }
+
+    public function checkLink()
+    {
+        $this->inputs = filter_input_array(INPUT_POST, $this->linkFilters);
+        foreach ($this->inputs as $key => $input) {
+            if (empty($input) || $input === false) {
+                $this->disparity = $this->linkErrorsMessage[$key];
+                return false;
+            }
+        }
+        return true;
     }
 }
