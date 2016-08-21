@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="add-form">
+    <form action="/plans/addPlan" role="form" method="post" enctype="multipart/form-data">
+        {% if data.error.field is defined %}
+        <div class="warning">
+            <p>Поле {{ data.error.field }} заполнено не корректно. {{ data.error.prompt }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <input type="text" class="form-control" name="description"
+                   id="description"  value="{{ data.description }}">
+        </div>
+        <div class="form-group">
+            <p>Уровень TH:</p>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="townhole" id="townhole8" value="8th" {% if data.townhole starts with '8' %} checked {% endif %}>
+                    TH 8
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="townhole" id="townhole9" value="9th" {% if data.townhole starts with '9' %} checked {% endif %}>
+                    TH 9
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="townhole" id="townhole10" value="10th" {% if data.townhole starts with '10' %} checked {% endif %}>
+                    TH 10
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="townhole" id="townhole11" value="11th" {% if data.townhole starts with '11' %} checked {% endif %}>
+                    TH 11
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="file" id="plan" name="file">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Отправить</button>
+            <button type="reset" class="btn btn-danger">Очистить</button>
+        </div>
+    </form>
+</main>
+
+{% endblock %}

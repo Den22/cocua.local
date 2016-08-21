@@ -8,6 +8,9 @@ use Application\Classes\DB;
 class Users extends AbstractModel
 {
     protected static $table = 'Users';
+    const MEMBER ='Member';
+    const ELDER ='Elder';
+    const COLIDER ='Co Leader';
 
     public static function getHashtagPasswordList()
     {

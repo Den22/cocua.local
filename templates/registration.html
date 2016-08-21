@@ -33,19 +33,19 @@
             <p>Звание:</p>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank1" value="Member" checked>
+                    <input type="radio" name="rank" id="rank1" value="Member" {% if data.rank starts with 'M' %} checked {% endif %}>
                     Учасник
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank2" value="Elder">
+                    <input type="radio" name="rank" id="rank2" value="Elder" {% if data.rank starts with 'E' %} checked  {% endif %}>
                     Старейшина
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="rank" id="rank3" value="Co Leader">
+                    <input type="radio" name="rank" id="rank3" value="Co Leader" {% if data.rank starts with 'C' %} checked {% endif %}>
                     Соруководитель
                 </label>
             </div>

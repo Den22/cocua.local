@@ -21,7 +21,14 @@ class Files
 
     public static function AddAvatar()
     {
-        $uploadDir = dirname(__DIR__) . DIRSEP . DIRSEP . 'avatar' . DIRSEP;
+        $uploadDir = dirname(__DIR__) . DIRSEP . 'img' . DIRSEP . 'avatars' . DIRSEP;
+        $res = self::uploadedFile($uploadDir);
+        return $res;
+    }
+
+    public static function AddPlan()
+    {
+        $uploadDir = dirname(__DIR__) . DIRSEP . 'img' . DIRSEP . 'plans' . DIRSEP;
         $res = self::uploadedFile($uploadDir);
         return $res;
     }

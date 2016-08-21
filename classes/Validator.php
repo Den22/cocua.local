@@ -135,6 +135,23 @@ class Validator
         ]
     ];
 
+    public $planFilters = [
+        'description' => [
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => ['regexp' => '/^\X{3,80}$/u']
+        ],
+        'townhole' => [
+            'filter' => FILTER_UNSAFE_RAW
+        ]
+    ];
+
+    public $planErrorsMessage = [
+        'description' => [
+            'field' => '"Описание"',
+            'prompt' => 'Должно быть от 3 до 80 символов'
+        ]
+    ];
+
     public $disparity;
     public $inputs;
 
@@ -214,6 +231,18 @@ class Validator
         foreach ($this->inputs as $key => $input) {
             if (empty($input) || $input === false) {
                 $this->disparity = $this->linkErrorsMessage[$key];
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function checkPlan()
+    {
+        $this->inputs = filter_input_array(INPUT_POST, $this->planFilters);
+        foreach ($this->inputs as $key => $input) {
+            if (empty($input) || $input === false) {
+                $this->disparity = $this->planErrorsMessage[$key];
                 return false;
             }
         }

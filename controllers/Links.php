@@ -41,6 +41,7 @@ class Links
         if (!$valid->checkLink()) {
             $view->data = $valid->inputs;
             $view->data['error'] = $valid->disparity;
+            $view->data['cookie'] = Cookie::get('hashtag');
             $view->display('addLink');
             die;
         }
