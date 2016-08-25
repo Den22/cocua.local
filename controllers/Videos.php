@@ -49,7 +49,6 @@ class Videos
         }
         $video = new VideosModel();
         $video->data = $valid->inputs;
-        $video->data['authorHashtag'] = Cookie::get('hashtag');
         $video->data['link'] = Convert::linkToIframe($video->data['link']);
         $video->data['authorHashtag'] = Cookie::get('hashtag');
         $user = Users::findByColumnArray('hashtag', $video->data['authorHashtag']);
